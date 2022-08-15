@@ -3,7 +3,7 @@ import OpenBlender
 import json
 import config
 
-def bitcoin_scrape(start="2022-05-22", end="2022-08-12"):
+def generate_data(start="2022-05-22", end="2022-08-12"):
     token = config.data_token
     action = 'API_getObservationsFromDataset'
 
@@ -23,4 +23,13 @@ def bitcoin_scrape(start="2022-05-22", end="2022-08-12"):
 
     return df
 
-print(bitcoin_scrape(start="2022-05-22", end="2022-08-12"))
+def ml_ify(df):
+    format = '%d-%m-%Y %H:%M:%S'
+    timezone = 'GMT'
+    df['unix_time'] = OpenBlender.dateToUnix(df['date'], date_format = format, timezone = timezone)
+    df = df[['date', 'unix_time', 'binary_change']]
+
+    return df
+
+# df = generate_data(start="2022-05-22", end="2022-08-12")
+# print(ml_ify(df))
