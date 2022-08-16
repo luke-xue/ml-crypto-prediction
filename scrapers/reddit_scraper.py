@@ -12,7 +12,7 @@ def scrape_reddit(endpoint = "comment", term = "", subreddit = "", end = None, b
 def comment_text(data):
     res = []
     for comment in data:
-        res.append(comment["body"])
+        res.append(comment["title"])
     return res
 
 # data = scrape_reddit("comment", "bitcoin", "cryptocurrency", "1660458309", "1660370077", "50")

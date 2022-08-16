@@ -27,7 +27,7 @@ def ml_ify(df):
     format = '%d-%m-%Y %H:%M:%S'
     timezone = 'GMT'
     df['unix_time'] = OpenBlender.dateToUnix(df['date'], date_format = format, timezone = timezone)
-    df = df[['date', 'unix_time', 'binary_change']]
+    df = df[['date', 'unix_time', 'change', 'binary_change']]
 
     return df
 
