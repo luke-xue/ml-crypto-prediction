@@ -19,7 +19,6 @@ def sentiment_analysis(start="2022-07-01", end="2022-07-5"):
 
     comments = []
     for unix in df["unix_time"]:
-        print(str(int(unix)),str(int(unix-86400)))
         data = scrape_reddit("submission", "bitcoin", "cryptocurrency", str(int(unix)), str(int(unix-86400)), "30")
         comment_list = str(comment_text(data))
         comments.append(comment_list)
@@ -43,7 +42,7 @@ def sentiment_analysis(start="2022-07-01", end="2022-07-5"):
     df['cleaned_comments'] = df['reddit_comments'].apply(clean_text)
     df['polarity'] = df['cleaned_comments'].apply(get_polarity)
 
-    df_sentiment = df[['polarity','change']]
+    df_sentiment = df[['polarity','binary_change']]
 
 
     return df_sentiment
